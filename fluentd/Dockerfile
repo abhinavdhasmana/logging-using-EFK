@@ -8,8 +8,9 @@ RUN apk add --no-cache --update --virtual .build-deps \
   && sudo gem install fluent-plugin-elasticsearch \
   && sudo gem install fluent-plugin-record-modifier \
   && sudo gem install fluent-plugin-concat \
+  && sudo gem install fluent-plugin-multi-format-parser \
   && sudo gem sources --clear-all \
   && apk del .build-deps \
   && rm -rf /home/fluent/.gem/ruby/2.5.0/cache/*.gem
 
-COPY fluentd.conf /fluentd/etc/
+COPY fluent.conf /fluentd/etc/

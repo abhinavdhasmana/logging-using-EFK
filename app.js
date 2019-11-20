@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const winston = require('./config/winston');
 
-
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
@@ -15,7 +14,7 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 // morgan('combined') is standard apache format log
-app.use(morgan('combined', { stream: winston.stream }));
+app.use(morgan('combined'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

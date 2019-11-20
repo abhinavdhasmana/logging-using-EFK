@@ -1,0 +1,31 @@
+version: "3"
+services:
+  fluentd:
+    build: "./fluentd"
+    ports:
+      - "9880:9880"
+      - "24224:24224"
+    network_mode: "host"
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    links:
+      - fluentd
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+  elasticsearch:
+    image: elasticsearch:7.4.1
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - discovery.type=single-node
+  kibana:
+    image: kibana:7.4.1
+    links:
+      - "elasticsearch"
+    ports:
+      - "5601:5601"

@@ -4,6 +4,14 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', (req, res) => {
+  const myJson = {
+    one: {
+      two: {
+        three: 3,
+      },
+    },
+  };
+  console.log(`this is my json: ${myJson}`);
   res.render('index', { title: 'Express' });
 });
 
