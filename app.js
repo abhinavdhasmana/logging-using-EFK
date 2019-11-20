@@ -12,7 +12,7 @@ const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 // morgan('combined') is standard apache format log
 app.use(morgan('combined'));
 app.use(express.json());
