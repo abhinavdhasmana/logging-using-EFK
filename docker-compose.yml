@@ -6,16 +6,6 @@ services:
       - "9880:9880"
       - "24224:24224"
     network_mode: "host"
-  web:
-    build: .
-    ports:
-      - "3000:3000"
-    links:
-      - fluentd
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-address: localhost:24224
   elasticsearch:
     image: elasticsearch:7.4.1
     ports:
@@ -29,3 +19,14 @@ services:
       - "elasticsearch"
     ports:
       - "5601:5601"
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    links:
+      - fluentd
+    restart: always
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224

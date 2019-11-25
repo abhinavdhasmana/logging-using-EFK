@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
       },
     },
   };
-  console.log(`this is my json: ${myJson}`);
+  console.log('this is new my json', myJson);
   res.render('index', { title: 'Express' });
 });
 
